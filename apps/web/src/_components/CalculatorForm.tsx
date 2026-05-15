@@ -6,7 +6,6 @@ import type { CalculationInput, CalculationResult } from '@carb-calc/shared';
 import { Button } from '@/components/ui/button';
 import { DurationInput } from './DurationInput';
 import { IntensityButtons } from './IntensityButtons';
-import { WeightInput } from './WeightInput';
 import { AdvancedOptions } from './AdvancedOptions';
 import { ResultsPanel } from './ResultsPanel';
 
@@ -20,7 +19,6 @@ export function CalculatorForm() {
   const [hours, setHours] = useState(2);
   const [minutes, setMinutes] = useState(0);
   const [intensity, setIntensity] = useState(DEFAULT_INPUT.intensity);
-  const [weightStr, setWeightStr] = useState('');
   const [ratio, setRatio] = useState(DEFAULT_RATIO);
   const [carbsOverride, setCarbsOverride] = useState('');
   const [result, setResult] = useState<CalculationResult | null>(null);
@@ -32,7 +30,6 @@ export function CalculatorForm() {
     const input: CalculationInput = {
       durationMinutes,
       intensity,
-      weightKg: weightStr ? Number(weightStr) : undefined,
       carbsPerHourOverride: carbsOverride ? Number(carbsOverride) : undefined,
       ratio,
     };
@@ -61,8 +58,6 @@ export function CalculatorForm() {
             />
 
             <IntensityButtons value={intensity} onChange={setIntensity} />
-
-            <WeightInput value={weightStr} onChange={setWeightStr} />
 
             <AdvancedOptions
               ratio={ratio}
